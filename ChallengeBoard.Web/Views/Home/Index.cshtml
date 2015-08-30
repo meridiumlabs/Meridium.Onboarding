@@ -1,0 +1,34 @@
+﻿@using ChallengeBoard.Web.Models.Extensions
+@using ChallengeBoard.Web.Models.ViewModels
+@model BoardViewModel
+
+<div class="cards" id="Cards">
+    <div class="item intro">
+        <div class="intro-progress" id="ProgressBarContainer"></div>
+        <h1 class="intro-name">Christian Andersson</h1>
+        <strong class="intro-score">53</strong>
+        <div class="intro-awards">
+            <span class="intro-award icon icon-health" aria-hidden="true"><span class="card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span class="card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span class="card-icon-ring"></span></span>    
+            <span class="intro-award icon icon-health" aria-hidden="true"><span class="card-icon-ring"></span></span>    
+            <span class="intro-award icon icon-health" aria-hidden="true"><span class="card-icon-ring"></span></span>
+        </div>        
+    </div>      
+    @foreach (var challenge in Model.Challenges) {
+        <div class="item card @(challenge.IsComplete(Model.CurrentUser) ? "card--complete" : string.Empty)" role="button" data-id="@challenge.Id" data-points="@challenge.Points">
+            <div class="card-background"></div>
+            <div class="card-body">
+                <div class="card-icon">
+                    <div class="card-icon-inner">
+                        <span class="icon icon-health" aria-hidden="true"></span>
+                        <span class="icon icon-check" aria-hidden="true"></span>                        
+                    </div>
+                    <span class="card-icon-ring"></span>
+                </div>                
+                <strong class="card-heading">@challenge.Text</strong>
+                <footer class="card-meta">@challenge.Points poäng</footer>
+            </div>
+        </div>
+    }
+</div>
