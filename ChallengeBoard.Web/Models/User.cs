@@ -6,6 +6,7 @@ namespace ChallengeBoard.Web.Models {
         public User() {
             CompletedChallenges = new List<string>();
         }
+        public string AuthID { get; set; }
         [DisplayName("Användarnamn")]
         public string UserName { get; set; }
         [DisplayName("För- och efternamn")]

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ChallengeBoard.Web.Models;
 using Raven.Client;
@@ -31,7 +32,8 @@ namespace ChallengeBoard.Web.Core
                 UserName = newUser.UserName.ToLower(),
                 Name = newUser.Name,
                 Password = newUser.Password,
-                IsPublic = newUser.IsPublic
+                IsPublic = newUser.IsPublic,
+                AuthID = Guid.NewGuid().ToString()
             };
 
             session.Store(user);

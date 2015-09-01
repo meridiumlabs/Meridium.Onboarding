@@ -15,6 +15,12 @@ namespace ChallengeBoard.Web.App_Start
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Auth",
+                url: "authentication/{action}/{id}",
+                defaults: new { controller = "Authentication", action = "Index", id = UrlParameter.Optional }
+            );
+
             routes.MapRoute("404", "404", new { controller = "NotFound", action = "NotFound" });
 
             routes.MapRoute(
