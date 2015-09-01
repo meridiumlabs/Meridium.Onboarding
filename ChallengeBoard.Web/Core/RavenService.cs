@@ -22,13 +22,16 @@ namespace ChallengeBoard.Web.Core
 
         public static User GetUser(IDocumentSession session, string name)
         {
-            return session.Query<User>().FirstOrDefault(m => m.UserName == name.ToLower());
+            return session.Query<User>().Customize(x=>x.WaitForNonStaleResults()).FirstOrDefault(m => m.UserName == name.ToLower());
         }
 
-        public static User CreateUser(IDocumentSession session, string name)
+        public static User CreateUser(IDocumentSession session, User newUser)
         {
-            var user = new User { 
-                UserName = name.ToLower()
+            var user = new User {
+                UserName = newUser.UserName.ToLower(),
+                Name = newUser.Name,
+                Password = newUser.Password,
+                IsPublic = newUser.IsPublic
             };
 
             session.Store(user);

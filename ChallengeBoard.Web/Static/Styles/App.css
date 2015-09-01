@@ -511,7 +511,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 2rem;
-  font-weight: 300; }
+  font-weight: bold; }
 
 h1 {
   font-size: 4.0rem;
@@ -579,7 +579,7 @@ input[type="button"] {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
-  color: #555;
+  color: #fff;
   text-align: center;
   font-size: 11px;
   font-weight: 600;
@@ -588,9 +588,9 @@ input[type="button"] {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
-  border-radius: 4px;
-  border: 1px solid #bbb;
+  background-color: #00d2a9;
+  border-radius: 25px;
+  border: none;
   cursor: pointer;
   box-sizing: border-box; }
 
@@ -633,6 +633,10 @@ input[type="button"].button-primary:focus {
 
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+form {
+  width: 200px;
+  margin: 0 auto; }
+
 input[type="email"],
 input[type="number"],
 input[type="search"],
@@ -685,7 +689,7 @@ label,
 legend {
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  color: #fff; }
 
 fieldset {
   padding: 0;
@@ -1170,6 +1174,15 @@ body {
   background: -ms-linear-gradient(45deg, #8653be 27%, #8653be 27%, #47b8c4 83%);
   background: linear-gradient(45deg, #8653be 27%, #8653be 27%, #47b8c4 83%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8653be', endColorstr='#47b8c4',GradientType=1 ); }
+
+body, .wrap {
+  height: 100%; }
+
+.header-wrap {
+  width: 340px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff; }
 
 /*@import "base/breakpoints";
 @import "base/common";
