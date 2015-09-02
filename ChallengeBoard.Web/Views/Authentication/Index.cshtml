@@ -1,6 +1,9 @@
 ﻿@model ChallengeBoard.Web.Models.User
 
-
+<div class="header-wrap">
+    <h1>Välkommen!</h1>
+    <p>Ange lösenord nedan för att låsa upp brädan.</p>
+</div>
 @using (Html.BeginForm("Login", "Authentication"))
 {
     @Html.HiddenFor(model => model.UserName)
@@ -8,7 +11,7 @@
         @Html.LabelFor(model => model.Password)
     </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password)
         @Html.ValidationMessageFor(model => model.Password)
     </div>
     <p>

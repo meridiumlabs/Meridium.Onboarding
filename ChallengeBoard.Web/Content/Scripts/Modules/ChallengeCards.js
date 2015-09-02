@@ -31,6 +31,9 @@ class ChallengeCards {
         xhr.onload = function () {
             if (xhr.status !== 200) {
                 //Something went wrong message.
+                // return to login form
+                var username = document.getElementById("user-hide").innerText;
+                window.location.href = "/Authentication?name=" + username;
                 return;
             }            
         };

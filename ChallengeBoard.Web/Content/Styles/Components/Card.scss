@@ -119,6 +119,9 @@
     right:0;
     border-radius:50%;
     mix-blend-mode:soft-light;
+    &.fulfilled {
+        background-color: #00cc99;
+    }
 }
 .card-meta {
     position:absolute;
