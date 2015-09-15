@@ -15,11 +15,11 @@
         <strong class="intro-score" id="intro-score">@Model.TotalPoints</strong>
         
         <div class="intro-awards">
-            <span class="intro-award icon icon-health" aria-hidden="true"><span class="@(Model.TotalPoints >= 100 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
-            <span class="intro-award icon icon-health" aria-hidden="true"><span class="@(Model.TotalPoints >= 350 ? "fulfilled" : string.Empty)card-icon-ring"></span></span>
-            <span class="intro-award icon icon-health" aria-hidden="true"><span class="@(Model.TotalPoints >= 500 ? "fulfilled" : string.Empty)card-icon-ring"></span></span>    
-            <span class="intro-award icon icon-health" aria-hidden="true"><span class="@(Model.TotalPoints >= 700 ? "fulfilled" : string.Empty)card-icon-ring"></span></span>    
-            <span class="intro-award icon icon-health" aria-hidden="true"><span class="@(Model.TotalPoints >= 1000 ? "fulfilled" : string.Empty)card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-one" class="@(Model.TotalPoints >= 100 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-two" class="@(Model.TotalPoints >= 350 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-three" class="@(Model.TotalPoints >= 500 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>    
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-four" class="@(Model.TotalPoints >= 700 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>    
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-five" class="@(Model.TotalPoints >= 1000 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
         </div>        
     </div>      
     @foreach (var challenge in Model.Challenges) {

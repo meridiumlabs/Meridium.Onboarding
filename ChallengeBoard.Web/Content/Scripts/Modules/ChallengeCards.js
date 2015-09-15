@@ -21,6 +21,8 @@ class ChallengeCards {
         if(cardIsMarkedAsComplete) {
             points = points * -1;
         }
+        
+
         var event = new CustomEvent("challengeCardSaved", { "detail": points });
         document.dispatchEvent(event);
     }
