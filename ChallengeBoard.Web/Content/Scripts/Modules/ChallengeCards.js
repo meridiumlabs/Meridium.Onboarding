@@ -15,13 +15,14 @@ class ChallengeCards {
         }
     }
     updateChallengeCard(card) {
-        var cardIsMarkedAsComplete = card.classList.contains("card--complete")
+        var cardIsMarkedAsComplete = card.classList.contains("card--complete");
         card.classList.toggle("card--complete");
         var points = card.getAttribute('data-points');
         if(cardIsMarkedAsComplete) {
             points = points * -1;
         }
-        
+
+        //var e = document.createEvent('CustomEvent');
 
         var event = new CustomEvent("challengeCardSaved", { "detail": points });
         document.dispatchEvent(event);

@@ -10,13 +10,15 @@ class UserInfo {
         });
         this.registerEvents();
     }
-    registerEvents() {
+    registerEvents()
+    {
+        var event = new Event("challengeCardSaved");
         document.addEventListener("challengeCardSaved", event => this.updateProgressBar(event.detail));
     }
     initProgressBar()
     {
-        var currentPoints = parseFloat(document.getElementById('intro-score').innerText);
-        var maxScore = parseFloat(document.getElementById('max-score').innerText);
+        var currentPoints = parseFloat(document.getElementById('intro-score').textContent);
+        var maxScore = parseFloat(document.getElementById('max-score').textContent);
         var progress = currentPoints / maxScore;
         this.progressBar.animate(progress);
 
@@ -25,11 +27,11 @@ class UserInfo {
     updateProgressBar(points) {
         console.log(points);
         var scoreboard = document.getElementById('intro-score');
-        var currentPoints = parseInt(scoreboard.innerText);
+        var currentPoints = parseInt(scoreboard.textContent);
         
         var newScore = currentPoints + parseInt(points);
-        scoreboard.innerText = newScore;
-        var progress = parseFloat(scoreboard.innerText)/parseFloat(document.getElementById('max-score').innerText);
+        scoreboard.textContent = newScore;
+        var progress = parseFloat(scoreboard.textContent)/parseFloat(document.getElementById('max-score').textContent);
         this.progressBar.animate(progress);
 
         //update bonus rings
@@ -46,21 +48,21 @@ class UserInfo {
                 level.classList.remove("fulfilled");
             }
         }
-        if (currentPoints >= 350) {
-            //alert("100 eller mer");
+        if (currentPoints >= 400) {
+            
             var level = document.getElementById('bonus-level-two');
             if (!level.classList.contains("fulfilled")) {
                 level.classList.add("fulfilled");
             }
         } else {
-            //alert("mindre än 100");
+            
             var level = document.getElementById('bonus-level-two');
             if (level.classList.contains("fulfilled")) {
                 level.classList.remove("fulfilled");
             }
         }
                 
-        if (currentPoints >= 500) {
+        if (currentPoints >= 800) {
             var level = document.getElementById('bonus-level-three');
             if (!level.classList.contains("fulfilled")) {
                 level.classList.add("fulfilled");
@@ -71,7 +73,7 @@ class UserInfo {
                 level.classList.remove("fulfilled");
             }
         }
-        if (currentPoints >= 750) {
+        if (currentPoints >= 1300) {
             var level = document.getElementById('bonus-level-four');
             if (!level.classList.contains("fulfilled")) {
                 level.classList.add("fulfilled");
@@ -82,7 +84,7 @@ class UserInfo {
                 level.classList.remove("fulfilled");
             }
         }
-        if (currentPoints >= 1000) {
+        if (currentPoints >= 2000) {
             var level = document.getElementById('bonus-level-five');
             if (!level.classList.contains("fulfilled")) {
                 level.classList.add("fulfilled");
