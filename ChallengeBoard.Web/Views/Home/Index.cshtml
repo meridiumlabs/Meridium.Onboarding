@@ -38,6 +38,7 @@
                     <span class="card-icon-ring"></span>
                 </div>                
                 <strong class="card-heading">@challenge.Text</strong>
+                <strong class="card-count"><span class="card-count--subtr">-</span> <span class="card-count--number">@challenge.NumberOfCompletions(Model.CurrentUser)</span> <span class="card-count--add">+</span></strong>
                 <footer class="card-meta">@challenge.Points poäng</footer>
             </div>
         </div>

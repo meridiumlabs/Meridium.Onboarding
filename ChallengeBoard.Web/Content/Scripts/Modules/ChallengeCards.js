@@ -16,14 +16,16 @@ class ChallengeCards {
     }
     updateChallengeCard(card) {
         var cardIsMarkedAsComplete = card.classList.contains("card--complete");
-        card.classList.toggle("card--complete");
+        
         var points = card.getAttribute('data-points');
-        if(cardIsMarkedAsComplete) {
-            points = points * -1;
+        if (cardIsMarkedAsComplete) {
+            //points = points * -1;
+        } else {
+            card.classList.add("card--complete");
         }
-
-        //var e = document.createEvent('CustomEvent');
-
+        //console.log(card.getElementsByClassName('card-count--number')[0].textContent);
+        var currentCount = card.getElementsByClassName('card-count--number')[0];
+        currentCount.textContent = parseInt(currentCount.textContent) + 1;
         var event = new CustomEvent("challengeCardSaved", { "detail": points });
         document.dispatchEvent(event);
     }

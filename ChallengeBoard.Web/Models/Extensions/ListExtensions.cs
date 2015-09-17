@@ -6,12 +6,12 @@ namespace ChallengeBoard.Web.Models.Extensions {
             if (list == null) {
                 return;
             }
-            if (list.Contains(id)) {
+            /*if (list.Contains(id)) {
                 list.Remove(id);
             }
-            else {
+            else {*/
                 list.Add(id);
-            }
+            //}
         }
     }
 }

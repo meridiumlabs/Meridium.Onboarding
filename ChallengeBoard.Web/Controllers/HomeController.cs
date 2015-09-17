@@ -48,7 +48,8 @@ namespace ChallengeBoard.Web.Controllers {
             {
                 if (challenge.IsComplete(user))
                 {
-                    points += challenge.Points;
+                    var count = challenge.NumberOfCompletions(user);
+                    points += challenge.Points * count;
                 }
             }
 
