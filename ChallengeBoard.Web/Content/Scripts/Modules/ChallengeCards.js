@@ -15,17 +15,22 @@ class ChallengeCards {
         }
     }
     updateChallengeCard(card) {
-        var cardIsMarkedAsComplete = card.classList.contains("card--complete");
         
+        var cardIsMarkedAsComplete = card.classList.contains("card--complete");
+        var cardIsSingleOnly = card.classList.contains("card--single");
         var points = card.getAttribute('data-points');
-        if (cardIsMarkedAsComplete) {
-            //points = points * -1;
+
+        if (cardIsMarkedAsComplete && cardIsSingleOnly) {
+            points = points * -1;
+            card.classList.remove("card--complete"); 
         } else {
-            card.classList.add("card--complete");
-        }
-        //console.log(card.getElementsByClassName('card-count--number')[0].textContent);
-        var currentCount = card.getElementsByClassName('card-count--number')[0];
-        currentCount.textContent = parseInt(currentCount.textContent) + 1;
+            card.classList.add("card--complete"); 
+            if(!cardIsSingleOnly) {
+                var currentCount = card.getElementsByClassName('card-count--number')[0];
+                currentCount.textContent = parseInt(currentCount.textContent) + 1;
+            }
+        }        
+
         var event = new CustomEvent("challengeCardSaved", { "detail": points });
         document.dispatchEvent(event);
     }
@@ -40,11 +45,12 @@ class ChallengeCards {
                 var username = document.getElementById("user-hide").textContent;
                 window.location.href = "/Authentication?name=" + username;
                 return;
-            }            
+            }             
         };
-        xhr.send(JSON.stringify({
+        xhr.send(JSON.stringify({ 
             id: card.getAttribute('data-id'),
-            currentUser: this.user
+            currentUser: this.user,
+            single: card.classList.contains("card--single")
         }));
     }
 }

@@ -58,11 +58,16 @@ namespace ChallengeBoard.Web.Controllers {
         }
 
         [HttpPost]
-        public ActionResult ToggleChallenge(string id, string currentUser) {
+        public ActionResult ToggleChallenge(string id, string currentUser, bool single) {
             var user = RavenSession.Load<User>("users/" + currentUser);
-            if (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID)
-            {
-                user.CompletedChallenges.Toggle(id);
+            if (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID) {
+                if (single) {
+                    user.CompletedChallenges.Toggle(id);
+                }
+                else {
+                    user.CompletedChallenges.Add(id);
+                }
+                
                 RavenSession.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }

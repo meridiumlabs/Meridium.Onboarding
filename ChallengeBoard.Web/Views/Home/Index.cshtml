@@ -27,7 +27,7 @@
         {
             maxPoints += challenge.Points;
         }
-        <div class="item card @(challenge.IsComplete(Model.CurrentUser) ? "card--complete" : string.Empty)" role="button" data-id="@challenge.Id" data-points="@challenge.Points">
+        <div class="item card@(challenge.IsComplete(Model.CurrentUser) ? " card--complete" : string.Empty)@(challenge.Single ? " card--single" : string.Empty)" role="button" data-id="@challenge.Id" data-points="@challenge.Points">
             <div class="card-background"></div>
             <div class="card-body">
                 <div class="card-icon">
@@ -36,9 +36,11 @@
                         <span class="icon icon-check" aria-hidden="true"></span>                        
                     </div>
                     <span class="card-icon-ring"></span>
-                </div>                
+                </div>
                 <strong class="card-heading">@challenge.Text</strong>
-                <strong class="card-count"><span class="card-count--subtr">-</span> <span class="card-count--number">@challenge.NumberOfCompletions(Model.CurrentUser)</span> <span class="card-count--add">+</span></strong>
+                @if (!challenge.Single) {
+                    <strong class="card-count"><span class="card-count--subtr">-</span> <span class="card-count--number">@challenge.NumberOfCompletions(Model.CurrentUser)</span> <span class="card-count--add">+</span></strong>
+                }
                 <footer class="card-meta">@challenge.Points poäng</footer>
             </div>
         </div>
