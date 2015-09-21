@@ -16,7 +16,11 @@ class ChallengeCards {
 
                 });
                 var card = cards[i];
-                cards[i].getElementsByClassName('card-count--subtr')[0].addEventListener("click", function(e) {
+                var count = cards[i].getElementsByClassName('card-count--subtr');
+                if(count.length == 0)
+                    return;
+
+                count[0].addEventListener("click", function(e) {
                     //alert("hej");
                     e.preventDefault();
                     e.stopPropagation();
