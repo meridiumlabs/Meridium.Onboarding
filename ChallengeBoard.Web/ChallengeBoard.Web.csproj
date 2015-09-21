@@ -146,6 +146,7 @@
     <Content Include="Content\Icons\uE003-check.svg" />
     <Content Include="Content\Scripts\Modules\ChallengeCards.js" />
     <Content Include="Content\Scripts\Main.js" />
+    <Content Include="Content\Scripts\Modules\UserInfo.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

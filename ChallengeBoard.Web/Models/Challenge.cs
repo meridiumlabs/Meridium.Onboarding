@@ -12,6 +12,7 @@ namespace ChallengeBoard.Web.Models
         public string Text { get; set; }
         public int Points { get; set; }
         public ChallengeCategory? Category { get; set; }
+        public bool Hide { get; set; }
         [JsonIgnore]
         public IEnumerable<SelectListItem> Categories
         {

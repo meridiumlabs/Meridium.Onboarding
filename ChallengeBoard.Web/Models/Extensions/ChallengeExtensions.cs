@@ -8,7 +8,7 @@ namespace ChallengeBoard.Web.Models.Extensions {
 
         public static int NumberOfCompletions(this Challenge challenge, User user)
         {
-            var count = user.CompletedChallenges.Count(s => challenge.Id.Contains(s));
+            var count = user.CompletedChallenges.Count(s => challenge.Id == s);
 
             return count;
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using ChallengeBoard.Web.Core;
@@ -31,7 +32,7 @@ namespace ChallengeBoard.Web.Controllers {
                 
                 var boardViewModel = new BoardViewModel
                 {
-                    Challenges = challenges,
+                    Challenges = challenges.Where(m => m.Hide == false).ToList(),
                     TotalPoints = CalculatePoints(challenges, user),
                     CurrentUser = user
                 };
