@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ChallengeBoard.Web.Models.Extensions {
     public static class ListExtensions {
@@ -11,6 +12,20 @@ namespace ChallengeBoard.Web.Models.Extensions {
             }
             else {*/
                 list.Add(id);
+            //}
+        }
+        public static void Subtract(this List<string> list, string id)
+        {
+            if (list == null)
+            {
+                return;
+            }
+            /*if (list.Contains(id)) {
+                list.Remove(id);
+            }
+            else {*/
+            var first = list.FirstOrDefault(x => x == id);
+            list.Remove(first);
             //}
         }
     }

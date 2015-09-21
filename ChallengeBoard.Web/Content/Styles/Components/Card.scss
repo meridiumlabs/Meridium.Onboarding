@@ -147,7 +147,10 @@
 }
 .card-count--subtr,
 .card-count--add {
-    display: none;
+    //display: none;
+    display: inline-block;
+    width: 30px;
+    text-align: center;
 }
 .intro {
     float:left;
