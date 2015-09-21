@@ -74,6 +74,19 @@ namespace ChallengeBoard.Web.Controllers {
             return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             //return RedirectToAction("Index", "Authentication", new { name = user.UserName });
         }
+        [HttpPost]
+        public ActionResult ToggleChallengeSubtract(string id, string currentUser)
+        {
+            var user = RavenSession.Load<User>("users/" + currentUser);
+            if (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID)
+            {
+                user.CompletedChallenges.Subtract(id);
+                RavenSession.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            //return RedirectToAction("Index", "Authentication", new { name = user.UserName });
+        }
 
         [HttpPost]
         public ActionResult NewUser(User user)
