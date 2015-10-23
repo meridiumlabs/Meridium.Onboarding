@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -67,7 +68,8 @@ namespace ChallengeBoard.Web.Controllers {
                 else {
                     user.CompletedChallenges.Add(id);
                 }
-                
+                var feedEntry = CreateFeedEntry("users/" + currentUser, id);
+                RavenSession.Store(feedEntry);
                 RavenSession.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
@@ -81,6 +83,7 @@ namespace ChallengeBoard.Web.Controllers {
             if (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID)
             {
                 user.CompletedChallenges.Subtract(id);
+               
                 RavenSession.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
@@ -88,6 +91,7 @@ namespace ChallengeBoard.Web.Controllers {
             //return RedirectToAction("Index", "Authentication", new { name = user.UserName });
         }
 
+        
         [HttpPost]
         public ActionResult NewUser(User user)
         {
@@ -99,7 +103,17 @@ namespace ChallengeBoard.Web.Controllers {
             return RedirectToAction("Index", new { name = user.UserName });
         }
 
-        
+        protected Feed CreateFeedEntry(string userid, string challengeid)
+        {
+            var feedEntry = new Feed()
+            {
+                UserId = userid,
+                TimeStamp = DateTime.Now,
+                ChallengeId = challengeid
+            };
+
+            return feedEntry;
+        }
     }
 
 

@@ -10,6 +10,7 @@
 <div class="cards" id="Cards">
     <div class="item intro">
         <div id="user-hide">@Model.CurrentUser.UserName</div>
+        
         <div class="intro-progress" id="ProgressBarContainer"></div>
         <h1 class="intro-name">@Model.CurrentUser.Name</h1>
         <strong class="intro-score" id="intro-score">@Model.TotalPoints</strong>
@@ -46,5 +47,6 @@
         </div>
     }
     <div id="max-score">@maxPoints</div>
+    <div><a href="#">History</a></div>
 </div>
 
