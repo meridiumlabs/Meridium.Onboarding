@@ -184,6 +184,16 @@
     right:0;
     top:234px;
     font-weight:300;
+
+}
+.intro-status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    color: #fff;
+    font-size: 25px;
+    font-weight: normal;
 }
 .intro-awards {
     position:absolute;
@@ -263,5 +273,8 @@
     .intro {
         width:100%;
         height: 476px;
+    }
+    .intro-status {
+        font-size: 20px;
     }
 }

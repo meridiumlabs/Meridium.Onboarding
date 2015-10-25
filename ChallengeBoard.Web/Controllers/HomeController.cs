@@ -16,6 +16,7 @@ namespace ChallengeBoard.Web.Controllers {
         
         public ActionResult Index(string name)
         {
+            
             if (string.IsNullOrEmpty(name))
             {
                 return View("Welcome");
@@ -26,8 +27,9 @@ namespace ChallengeBoard.Web.Controllers {
             {   
                 return View("NewUser", new User{UserName = name});
             }
+            var isAuthenticated = Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID;
 
-            if (user.IsPublic || (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID))
+            if (user.IsPublic || isAuthenticated)
             {
                 var challenges = RavenService.GetAllChallenges(RavenSession);
                 
@@ -35,7 +37,8 @@ namespace ChallengeBoard.Web.Controllers {
                 {
                     Challenges = challenges.Where(m => m.Hide == false).ToList(),
                     TotalPoints = CalculatePoints(challenges, user),
-                    CurrentUser = user
+                    CurrentUser = user,
+                    IsAuthenticated = isAuthenticated
                 };
                 return View("Index", boardViewModel);
             }
