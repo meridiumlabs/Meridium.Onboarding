@@ -847,6 +847,10 @@ Markup:
 <span class="icon icon-check icon--fw icon--lg" aria-hidden="true"r></span> .icon-check
 </div>
 
+<div style="border-top:1px solid #eee;border-bottom:1px solid #eee;margin-bottom:10px;">
+<span class="icon icon-clock icon--fw icon--lg" aria-hidden="true"r></span> .icon-clock
+</div>
+
 
 
 Styleguide 3.3.
@@ -859,6 +863,9 @@ Styleguide 3.3.
 
 .icon-check:before {
   content: ""; }
+
+.icon-clock:before {
+  content: ""; }
 
 /*
 Icons
@@ -929,10 +936,12 @@ Styleguide 3.1.
 
 .cards {
   list-style: none;
-  padding: 20px;
+  padding: 20px 0 20px 20px;
   margin: 0;
   font-size: 0;
-  box-sizing: content-box; }
+  box-sizing: content-box;
+  width: 85%;
+  float: left; }
 
 .card {
   font-size: 16px;
@@ -1171,6 +1180,16 @@ Styleguide 3.1.
     height: 476px; }
   .intro-status {
     font-size: 20px; } }
+
+#history-feed {
+  width: 12%;
+  float: left;
+  margin-top: 20px;
+  padding: 5px; }
+  #history-feed ul li {
+    list-style: none; }
+    #history-feed ul li span {
+      display: block; }
 
 html {
   height: 100%; }

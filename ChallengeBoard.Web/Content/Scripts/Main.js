@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     userInfo.initProgressBar();
 
     var cards = document.getElementById('Cards');
+
 });
 /*var msnry = new Masonry( cards, {
   itemSelector: '.item',

@@ -202,6 +202,7 @@
     <Content Include="Views\Authentication\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Styles\Components\HistoryFeed.scss" />
     <None Include="Properties\PublishProfiles\Challenge board publish.pubxml" />
   </ItemGroup>
   <PropertyGroup>

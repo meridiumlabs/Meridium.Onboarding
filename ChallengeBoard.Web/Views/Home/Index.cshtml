@@ -1,4 +1,5 @@
-﻿@using ChallengeBoard.Web.Models.Extensions
+﻿@using ChallengeBoard.Web.Models
+@using ChallengeBoard.Web.Models.Extensions
 @using ChallengeBoard.Web.Models.ViewModels
 @model BoardViewModel
 
@@ -17,6 +18,8 @@
         @{
             if (Model.IsAuthenticated)
             {
+                
+                
                 <strong class="intro-status">Inloggad</strong>
             }
             else
@@ -27,10 +30,10 @@
         }
         <div class="intro-awards">
             <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-one" class="@(Model.TotalPoints >= 100 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
-            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-two" class="@(Model.TotalPoints >= 350 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
-            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-three" class="@(Model.TotalPoints >= 500 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>    
-            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-four" class="@(Model.TotalPoints >= 700 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>    
-            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-five" class="@(Model.TotalPoints >= 1000 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-two" class="@(Model.TotalPoints >= 400 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-three" class="@(Model.TotalPoints >= 800 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>    
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-four" class="@(Model.TotalPoints >= 1300 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>    
+            <span class="intro-award icon icon-health" aria-hidden="true"><span id="bonus-level-five" class="@(Model.TotalPoints >= 2000 ? "fulfilled" : string.Empty) card-icon-ring"></span></span>
         </div>        
     </div>      
     @foreach (var challenge in Model.Challenges) {
@@ -58,5 +61,22 @@
     }
     <div id="max-score">@maxPoints</div>
     
+</div>
+
+<div id="history-feed">
+    
+    @if (Model.History.Any())
+    {
+        <h2>Historik</h2>
+        <ul>
+            @foreach (FeedViewModel feed in Model.History)
+            {
+                <li>
+                    <span>@feed.TimeStamp</span>
+                    <span>@feed.Challenge</span>
+                </li>
+            }
+        </ul>
+    }
 </div>
 

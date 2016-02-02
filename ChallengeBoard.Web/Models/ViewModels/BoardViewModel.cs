@@ -6,5 +6,6 @@ namespace ChallengeBoard.Web.Models.ViewModels {
         public User CurrentUser { get; set; }
         public int TotalPoints { get; set; }
         public bool IsAuthenticated { get; set; }
+        public List<FeedViewModel> History { get; set; }
     }
 }

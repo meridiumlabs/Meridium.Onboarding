@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
 using ChallengeBoard.Web.Controllers;
 using ChallengeBoard.Web.Core;
 using ChallengeBoard.Web.Models;
@@ -26,10 +29,12 @@ namespace ChallengeBoard.Web.Views.Authentication
                 return RedirectToAction("Index", new { name = user.UserName });
             }
 
-            string authId = userFromDatabase.AuthID;
-
-            Session["AuthID"] = authId;
-
+            
+            var cookie = new HttpCookie("AuthID");
+            cookie.Value = userFromDatabase.AuthID;
+            cookie.Expires = new DateTime(2020, 12, 31);
+            Response.Cookies.Add(cookie);
+            
 
             return RedirectToAction("Index", "Home", new { name = user.UserName });
         }

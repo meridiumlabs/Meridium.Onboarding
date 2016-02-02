@@ -26,6 +26,35 @@ namespace ChallengeBoard.Web.Core
             return session.Query<User>().Customize(x=>x.WaitForNonStaleResults()).FirstOrDefault(m => m.UserName == name.ToLower());
         }
 
+        public static string GetChallengeName(IDocumentSession session, string challengeId)
+        {
+            var challenge = session.Load<Challenge>(challengeId); 
+            if (challenge != null)
+            {
+                return challenge.Text;
+            }
+            return string.Empty;
+        }
+        public static List<FeedViewModel> GetHistory(IDocumentSession session, User user)
+        {
+            var list = new List<FeedViewModel>();
+            var userId = "users/" + user.UserName;
+            var feedItems = session.Query<Feed>().Where(m => m.UserId == userId).OrderByDescending(m => m.TimeStamp).Take(10);
+
+            foreach (Feed feedItem in feedItems)
+            {
+                var model = new FeedViewModel()
+                {
+                    TimeStamp = feedItem.TimeStamp,
+                    Challenge = GetChallengeName(session, feedItem.ChallengeId)
+                };
+
+                list.Add(model);
+            }
+
+            return list;
+        }
+
         public static User CreateUser(IDocumentSession session, User newUser)
         {
             var user = new User {

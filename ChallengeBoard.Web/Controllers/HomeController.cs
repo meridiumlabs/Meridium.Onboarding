@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 using ChallengeBoard.Web.Core;
 
@@ -27,18 +30,20 @@ namespace ChallengeBoard.Web.Controllers {
             {   
                 return View("NewUser", new User{UserName = name});
             }
-            var isAuthenticated = Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID;
+            var isAuthenticated = IsAuthenticated(user);
 
             if (user.IsPublic || isAuthenticated)
             {
                 var challenges = RavenService.GetAllChallenges(RavenSession);
-                
+                var history = RavenService.GetHistory(RavenSession, user);
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("sv-SE");
                 var boardViewModel = new BoardViewModel
                 {
                     Challenges = challenges.Where(m => m.Hide == false).ToList(),
                     TotalPoints = CalculatePoints(challenges, user),
                     CurrentUser = user,
-                    IsAuthenticated = isAuthenticated
+                    IsAuthenticated = isAuthenticated,
+                    History = history
                 };
                 return View("Index", boardViewModel);
             }
@@ -64,7 +69,7 @@ namespace ChallengeBoard.Web.Controllers {
         [HttpPost]
         public ActionResult ToggleChallenge(string id, string currentUser, bool single) {
             var user = RavenSession.Load<User>("users/" + currentUser);
-            if (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID) {
+            if (IsAuthenticated(user)) {
                 if (single) {
                     user.CompletedChallenges.Toggle(id);
                 }
@@ -83,7 +88,7 @@ namespace ChallengeBoard.Web.Controllers {
         public ActionResult ToggleChallengeSubtract(string id, string currentUser)
         {
             var user = RavenSession.Load<User>("users/" + currentUser);
-            if (Session["AuthID"] != null && Session["AuthID"].ToString() == user.AuthID)
+            if (IsAuthenticated(user))
             {
                 user.CompletedChallenges.Subtract(id);
                
@@ -94,6 +99,18 @@ namespace ChallengeBoard.Web.Controllers {
             //return RedirectToAction("Index", "Authentication", new { name = user.UserName });
         }
 
+        protected bool IsAuthenticated(User user)
+        {
+            if (Request.Cookies["AuthID"] != null)
+            {
+                var authId = Request.Cookies["AuthID"].Value;
+                if (authId == user.AuthID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         
         [HttpPost]
         public ActionResult NewUser(User user)
@@ -101,7 +118,10 @@ namespace ChallengeBoard.Web.Controllers {
             if (!string.IsNullOrEmpty(user.Name) && !string.IsNullOrEmpty(user.Password))
             {
                 var newUser = RavenService.CreateUser(RavenSession, user);
-                Session["AuthID"] = newUser.AuthID;
+                var cookie = new HttpCookie("AuthID");
+                cookie.Value = newUser.AuthID;
+                cookie.Expires = new DateTime(2020, 12, 31);
+                Response.Cookies.Add(cookie);
             }
             return RedirectToAction("Index", new { name = user.UserName });
         }

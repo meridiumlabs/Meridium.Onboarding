@@ -21,7 +21,7 @@ class ChallengeCards {
                     return;
 
                 count[0].addEventListener("click", function(e) {
-                    //alert("hej");
+                    
                     e.preventDefault();
                     e.stopPropagation();
 
