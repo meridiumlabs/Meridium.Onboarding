@@ -1,0 +1,30 @@
+{
+  "IndexId": 2,
+  "Name": "Auto/Challenges/ByTextSortByText",
+  "LockMode": "Unlock",
+  "Map": "from doc in docs.Challenges\nselect new {\n\tText = doc.Text\n}",
+  "Maps": [
+    "from doc in docs.Challenges\nselect new {\n\tText = doc.Text\n}"
+  ],
+  "Reduce": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {
+    "Text": "String"
+  },
+  "Analyzers": {},
+  "Fields": [],
+  "Suggestions": {},
+  "TermVectors": {},
+  "SpatialIndexes": {},
+  "InternalFieldsMapping": {
+    "Text": "Text"
+  },
+  "MaxIndexOutputsPerDocument": null,
+  "Type": "Auto",
+  "DisableInMemoryIndexing": false,
+  "IsTestIndex": false,
+  "IsSideBySideIndex": false
+}

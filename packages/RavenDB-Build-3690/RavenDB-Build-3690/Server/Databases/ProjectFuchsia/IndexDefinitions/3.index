@@ -1,0 +1,28 @@
+{
+  "IndexId": 3,
+  "Name": "Auto/Users/ByUserName",
+  "LockMode": "Unlock",
+  "Map": "from doc in docs.Users\nselect new {\n\tUserName = doc.UserName\n}",
+  "Maps": [
+    "from doc in docs.Users\nselect new {\n\tUserName = doc.UserName\n}"
+  ],
+  "Reduce": null,
+  "IsMapReduce": false,
+  "IsCompiled": false,
+  "Stores": {},
+  "Indexes": {},
+  "SortOptions": {},
+  "Analyzers": {},
+  "Fields": [],
+  "Suggestions": {},
+  "TermVectors": {},
+  "SpatialIndexes": {},
+  "InternalFieldsMapping": {
+    "UserName": "UserName"
+  },
+  "MaxIndexOutputsPerDocument": null,
+  "Type": "Auto",
+  "DisableInMemoryIndexing": false,
+  "IsTestIndex": false,
+  "IsSideBySideIndex": false
+}

@@ -1,0 +1,14 @@
+﻿@using OnBoard.Web.Models
+@model List<Challenge>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (Challenge challenge in Model)
+        {
+            <li>@challenge.Text | @challenge.Points | @challenge.Category</li>
+        }
+    </ul>
+    
+}
+@Html.ActionLink("Add Challenge", "AddChallenge")

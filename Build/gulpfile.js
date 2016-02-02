@@ -15,8 +15,8 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream');
    
 
-var destinationRoot = '../ChallengeBoard.Web/Static';
-var sourceRoot = '../ChallengeBoard.Web/Content';
+var destinationRoot = '../OnBoard.Web/Static';
+var sourceRoot = '../OnBoard.Web/Content';
 
 //Source folders.
 var src = {
