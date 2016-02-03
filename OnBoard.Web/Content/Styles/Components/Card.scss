@@ -20,7 +20,14 @@
     cursor:pointer;
 }
 
-
+.information {
+    position: absolute;
+    background: #fff;
+    width: 380px;
+    top: 91px;
+    left: 20px;
+    padding: 10px;
+}
 
 .card--complete {
     .card-background {
@@ -32,17 +39,17 @@
         transition: none !important;
     }
     .card-heading {
-        color:#735692;
+        color:#d44138;
     }
     .card-icon {
-        color:#00d2a9;
+        color:#d44138;
     }
     .card-icon-ring {
-        border-color:#00d2a9;        
+        border-color:#d44138;        
     }
     .card-meta {
-        border-color:#dbcff3;
-        color:#c1adea;
+        border-color:#db5f57;
+        color:#d44138;
     }
     .card-count {
         color:#c1adea;
@@ -157,19 +164,19 @@
 .intro {
     float:left;
     //width:516px;
-    width:33.2%;
-    height:420px;
+    width:100% !important;
+    height:273px;
     position:relative;
     text-align:center;
 }
 .intro-progress {
-    width:165px;
-    height:165px;
+    width:140px;
+    height:140px;
     display:inline-block;
     margin-top:44px;
 }
 .intro-score {
-    font-size:68px;
+    font-size:54px;
     color:#fff;
     position:absolute;
     left:0;
@@ -184,7 +191,7 @@
     position:absolute;
     left:0;
     right:0;
-    top:234px;
+    top:208px;
     font-weight:300;
 
 }

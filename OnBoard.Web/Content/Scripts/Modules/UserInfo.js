@@ -4,7 +4,7 @@ class UserInfo {
     constructor(user) {
         this.user = user;
         this.progressBar = new progressbar.Circle('#ProgressBarContainer', {
-            color: '#00cc99',
+            color: '#ffffff',
             strokeWidth: 3,
             easing: 'easeInOut'
         });
